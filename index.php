@@ -1,3 +1,10 @@
+<?php
+$pdo = new PDO("mysql:host=localhost;dbname=blog;charset=utf8", "root", "");
+$query = "SELECT * FROM entradas ORDER BY id DESC";
+$entradas = $pdo->query($query)->fetchAll();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +15,15 @@
 </head>
 <body>
     <h1>Aplicación PHP con MYSQL</h1>
+
+<?php foreach($entradas as $e) { ?>
+
+<h2><?php echo $e["Título"] ?></h2>
+<span>Autor : <?php echo $e["Autor"] ?></span>
+<p><?php echo $e["Contenido"] ?></p>
+
+<?php } ?>
+
+
 </body>
 </html>
